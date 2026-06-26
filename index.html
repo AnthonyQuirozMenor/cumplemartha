@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños, Martha!</title>
+    <!-- Google Fonts: Elegant Serif, Cursive, and Sans-serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <!-- Background Canvas for Floating Particles -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="https://upload.wikimedia.org/wikipedia/commons/3/30/Nocturne_in_E_flat_major%2C_Op._9_no._2.mp3" type="audio/mp3">
+        Tu navegador no soporta el reproductor de audio.
+    </audio>
+
+    <!-- INTRO ENVELOPE OVERLAY -->
+    <div id="envelopeOverlay" class="envelope-overlay">
+        <div class="envelope-wrapper">
+            <div class="envelope" id="envelope">
+                <div class="flap"></div>
+                <div class="pocket"></div>
+                <div class="letter">
+                    <div class="letter-content">
+                        <i class="fa-solid fa-heart letter-heart"></i>
+                        <p class="letter-preview-title">Para: Martha</p>
+                        <p class="letter-preview-text">Haz clic para abrir</p>
+                    </div>
+                </div>
+            </div>
+            <div class="envelope-hint">Toca la carta para comenzar</div>
+        </div>
+    </div>
+
+    <!-- MAIN PAGE CONTAINER -->
+    <div id="mainContent" class="main-content hidden">
+        
+        <!-- HEADER / HERO -->
+        <header class="hero-section">
+            <div class="gold-sparkle left"></div>
+            <div class="gold-sparkle right"></div>
+            <h1 class="hero-cursive animate-pop">Feliz Cumpleaños</h1>
+            <h2 class="hero-title animate-fade">MARTHA HUAYAC AGUILAR</h2>
+            <div class="hero-divider">
+                <span class="line"></span>
+                <i class="fa-solid fa-star gold-star animate-pulse"></i>
+                <span class="line"></span>
+            </div>
+            <p class="hero-subtitle">Celebrando un día lleno de luz, amor y felicidad</p>
+        </header>
+
+        <!-- DEDICATION CARD -->
+        <section class="dedication-section container">
+            <div class="glass-card dedication-card">
+                <div class="card-ornament top"></div>
+                <div class="card-body">
+                    <i class="fa-solid fa-quote-left card-quote-icon"></i>
+                    <p class="dedication-text">
+                        Martha, en este día tan especial queremos celebrar tu vida, tu alegría y la hermosa luz que compartes con todos los que te rodean. Que este nuevo año de vida venga cargado de bendiciones, salud, momentos inolvidables y metas cumplidas. 
+                    </p>
+                    <p class="dedication-text">
+                        Eres una persona maravillosa y mereces lo mejor que el universo tiene para ofrecer. Que hoy sonrías como nunca, disfrutes cada instante y sientas el inmenso cariño de quienes te apreciamos.
+                    </p>
+                    <h3 class="dedication-author">¡Felicidades hoy y siempre!</h3>
+                    <i class="fa-solid fa-quote-right card-quote-icon right-align"></i>
+                </div>
+                <div class="card-ornament bottom"></div>
+            </div>
+        </section>
+
+        <!-- MEMORY WALL (PHOTO GALLERY) -->
+        <section class="gallery-section container">
+            <h2 class="section-title">Galería de Recuerdos</h2>
+            <div class="gallery-subtitle animate-pulse">Haz clic en las fotos para expandirlas</div>
+            
+            <div class="gallery-grid">
+                <!-- Polaroid 1 -->
+                <div class="polaroid" onclick="openLightbox('m1.jpg', 'Siempre brillando con tu hermosa sonrisa')">
+                    <div class="polaroid-img-wrapper">
+                        <img src="m1.jpg" alt="Martha 1" loading="lazy">
+                    </div>
+                    <div class="polaroid-caption">Sonrisa Radiante</div>
+                </div>
+
+                <!-- Polaroid 2 -->
+                <div class="polaroid" onclick="openLightbox('m2.jpg', 'Momentos mágicos y llenos de felicidad')">
+                    <div class="polaroid-img-wrapper">
+                        <img src="m2.jpg" alt="Martha 2" loading="lazy">
+                    </div>
+                    <div class="polaroid-caption">Felicidad Única</div>
+                </div>
+
+                <!-- Polaroid 3 -->
+                <div class="polaroid" onclick="openLightbox('m3.jpg', 'La elegancia y carisma que te caracterizan')">
+                    <div class="polaroid-img-wrapper">
+                        <img src="m3.jpg" alt="Martha 3" loading="lazy">
+                    </div>
+                    <div class="polaroid-caption">Esencia & Luz</div>
+                </div>
+
+                <!-- Polaroid 4 -->
+                <div class="polaroid" onclick="openLightbox('m4.jpg', 'Que la alegría de celebrar te acompañe todo el año')">
+                    <div class="polaroid-img-wrapper">
+                        <img src="m4.jpg" alt="Martha 4" loading="lazy">
+                    </div>
+                    <div class="polaroid-caption">Celebración Especial</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WISHES GENERATOR -->
+        <section class="wishes-section container">
+            <div class="glass-card wishes-card">
+                <h3 class="wishes-title"><i class="fa-solid fa-gift pulse-icon"></i> Pide un Deseo para Martha</h3>
+                <p class="wishes-instruction">Haz clic en el botón para descubrir un hermoso deseo y celebrar este día especial con confeti.</p>
+                
+                <div class="wish-display-container">
+                    <div id="wishDisplay" class="wish-display">"Haz clic en el botón de abajo..."</div>
+                </div>
+                
+                <button id="wishBtn" class="gold-button">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Descubrir Deseo
+                </button>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="site-footer">
+            <p>Con mucho cariño en tu cumpleaños</p>
+            <div class="footer-icons">
+                <i class="fa-solid fa-heart footer-heart"></i>
+                <i class="fa-solid fa-cake-candles footer-cake"></i>
+                <i class="fa-solid fa-gift footer-gift"></i>
+            </div>
+            <p class="copy-text">&copy; 2026 • Creado con amor para Martha Huayac Aguilar</p>
+        </footer>
+
+    </div>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox" class="lightbox-modal" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content-wrapper" onclick="event.stopPropagation()">
+            <img class="lightbox-content" id="lightboxImg">
+            <div id="lightboxCaption" class="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <!-- FLOATING MUSIC PLAYER -->
+    <div id="musicPlayer" class="music-player-container paused">
+        <button id="musicToggleBtn" class="music-btn" title="Reproducir/Pausar Música">
+            <div class="pulse-ring"></div>
+            <i class="fa-solid fa-music music-icon"></i>
+            <i class="fa-solid fa-pause pause-icon hidden"></i>
+        </button>
+        <span class="music-label">Música</span>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
